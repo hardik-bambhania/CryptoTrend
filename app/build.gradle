@@ -8,15 +8,6 @@ plugins {
 android {
     compileSdk 31
 
-    signingConfigs {
-        release {
-            keyAlias 'HardikDevCirt'
-            keyPassword 'HarBam2107$'
-            storeFile file("D:\\Hardik\\Projects\\Freelansing\\Signing Cirtificate\\Hardik_Dev_Cirt\\hardikDevCert.jks")
-            storePassword 'HarBam2107$'
-        }
-    }
-
     defaultConfig {
         applicationId "com.hardik.cryptotrend"
         minSdk 21
@@ -29,7 +20,6 @@ android {
 
     buildTypes {
         release {
-            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
