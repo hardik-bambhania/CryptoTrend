@@ -1,9 +1,6 @@
 #include <jni.h>
 #include <string>
-#include <sys/time.h>
 #include <iostream>
-#include <chrono>
-#include <ctime>
 
 
 /**

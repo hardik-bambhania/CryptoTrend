@@ -35,6 +35,10 @@ CryptoTrend Application allow the user to see the details(Exchange rates) of cry
 
 You can find final CryptoTrend Application (APK) under apk directory of root project.
 
+## Export Logs
+
+You can export logs from option menu (on top right menu) -> Export Logs
+
 ## Client-Server Communication
 
 Mobile application will communicate with backend server through REST Http APIs. Use

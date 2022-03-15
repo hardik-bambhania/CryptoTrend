@@ -10,8 +10,8 @@ import java.io.File
 object AppLogger {
     private const val DIR_NAME = "log"
     private const val FILE_NAME = "cryptoTrend.log"
-    lateinit var mLogDir: File
-    lateinit var mLogFile: File
+    private lateinit var mLogDir: File
+    private lateinit var mLogFile: File
 
     fun initLogger(context: Context) {
         mLogDir = File(context.filesDir, DIR_NAME)
