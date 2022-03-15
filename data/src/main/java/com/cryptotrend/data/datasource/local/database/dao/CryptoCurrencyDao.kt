@@ -15,6 +15,6 @@ interface CryptoCurrencyDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(cryptoCurrencyEntity: CryptoCurrencyEntity)
 
-    @Query("SELECT * FROM cryptocurrencyentity")
+    @Query("SELECT * FROM cryptocurrencyentity ORDER BY name ASC")
     fun getAllCryptoCurrency(): Flow<List<CryptoCurrencyEntity>>
 }

@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModels()
+    private val cryptoCurrencyAdapter = CryptoCurrencyAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -45,7 +46,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
-        binding.recyclerViewCurrency.adapter = CryptoCurrencyAdapter(emptyList())
+        binding.recyclerViewCurrency.adapter = cryptoCurrencyAdapter
     }
 
     private fun addListener() {
@@ -68,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             viewModel.currencyData.collectLatest {
                 (binding.recyclerViewCurrency.adapter as CryptoCurrencyAdapter)
-                    .refresh(it)
+                    .submitList(it)
             }
         }
     }

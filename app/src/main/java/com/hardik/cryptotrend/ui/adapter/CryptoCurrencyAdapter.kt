@@ -2,13 +2,15 @@ package com.hardik.cryptotrend.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.cryptotrend.common.model.CryptoCurrency
 import com.hardik.cryptotrend.databinding.ItemCryptoCurrencyBinding
 import com.hardik.cryptotrend.utils.roundOff
 
-class CryptoCurrencyAdapter(private var currencyList: List<CryptoCurrency>) :
-    RecyclerView.Adapter<CryptoCurrencyAdapter.CurrencyViewHolder>() {
+class CryptoCurrencyAdapter() :
+    ListAdapter<CryptoCurrency, CryptoCurrencyAdapter.CurrencyViewHolder>(DiffCallback) {
 
     class CurrencyViewHolder(val binding: ItemCryptoCurrencyBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -20,7 +22,7 @@ class CryptoCurrencyAdapter(private var currencyList: List<CryptoCurrency>) :
     }
 
     override fun onBindViewHolder(holder: CurrencyViewHolder, position: Int) {
-        val currency = currencyList[position]
+        val currency = getItem(position)
         with(holder.binding) {
             imgCurrency.setImageResource(currency.icon)
             txtCurrencyName.text = currency.name
@@ -29,12 +31,13 @@ class CryptoCurrencyAdapter(private var currencyList: List<CryptoCurrency>) :
         }
     }
 
-    override fun getItemCount(): Int {
-        return currencyList.size
-    }
+    companion object DiffCallback : DiffUtil.ItemCallback<CryptoCurrency>() {
+        override fun areItemsTheSame(oldItem: CryptoCurrency, newItem: CryptoCurrency): Boolean {
+            return oldItem.id.equals(newItem.id, true)
+        }
 
-    fun refresh(newList: List<CryptoCurrency>) {
-        currencyList = newList
-        notifyDataSetChanged()
+        override fun areContentsTheSame(oldItem: CryptoCurrency, newItem: CryptoCurrency): Boolean {
+            return oldItem.equals(newItem)
+        }
     }
 }
