@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ShareCompat
 import androidx.core.content.FileProvider
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.hardik.cryptotrend.BuildConfig
 import com.hardik.cryptotrend.R
 import com.hardik.cryptotrend.databinding.ActivityMainBinding
@@ -67,9 +69,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun addObserver() {
         lifecycleScope.launch {
-            viewModel.currencyData.collectLatest {
-                (binding.recyclerViewCurrency.adapter as CryptoCurrencyAdapter)
-                    .submitList(it)
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.currencyData.collectLatest {
+                    (binding.recyclerViewCurrency.adapter as CryptoCurrencyAdapter)
+                        .submitList(it)
+                }
             }
         }
     }

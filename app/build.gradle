@@ -51,6 +51,7 @@ dependencies {
     implementation "com.google.android.material:material:$material_version"
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
     implementation "androidx.core:core-splashscreen:$splash_screen_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
 
     //Hilt - DI
     implementation "com.google.dagger:hilt-android:$hilt_version"
