@@ -1,0 +1,2 @@
+# CryptoTrend
+CryptoTrend Application
